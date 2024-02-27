@@ -1,6 +1,6 @@
 import Stepper from "../../utils/Stepper/Stepper";
 
-const Vcard = () => {
+const VcardStepper = () => {
   return (
     <>
       <Stepper />
@@ -8,4 +8,4 @@ const Vcard = () => {
   );
 };
 
-export default Vcard;
+export default VcardStepper;

@@ -1,11 +1,9 @@
-import Vcard from "../components/Vcard/Vcard";
-import VcardIndex from "../components/Vcard/VcardIndex";
+import VcardStepper from "../components/Vcard/VcardStepper";
 
 const VcardPage = () => {
   return (
     <>
-      <Vcard />
-
+      <VcardStepper />
       {/* <VcardIndex /> */}
     </>
   );
