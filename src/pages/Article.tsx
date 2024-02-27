@@ -9,7 +9,7 @@ const Article = () => {
     },
     {
       step: 2,
-      component: <>New page</>,
+      component: <>New page add</>,
     },
   ];
   return (
