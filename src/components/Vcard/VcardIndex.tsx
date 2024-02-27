@@ -1,6 +1,3 @@
-import Stepper from "../../utils/Stepper/Stepper";
-import ArticleIndex from "../Article/ArticleIndex";
-
 const VcardIndex = () => {
   return (
     <>

@@ -23,11 +23,12 @@ const lists: QrCodeTypeList[] = [
 const HomeIndex: FC = () => {
   return (
     <>
-      <section className="space-y-4">
-        <h2>QR code genrator</h2>
-        <div className="flex justify-between gap-x-4">
+      <section className="mb-5 space-y-4">
+        <h2 className="mt-4 text-lg font-semibold">QR code genrator</h2>
+        <div className="flex justify-between mb-5 gap-x-4">
           {lists.map((list, index) => (
             <NavLink
+              key={index}
               to={list.link}
               className={({ isActive }) =>
                 (isActive ? "active" : "") + " w-[50vw]"
