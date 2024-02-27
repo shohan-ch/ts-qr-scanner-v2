@@ -1,0 +1,20 @@
+[
+    {
+        "name" : "facebook",
+        "logo" : "https://qrfy.com/static/media/circle_facebook_logo.85cd642c67f3ce27082784973e77c7c6.svg"
+    },
+    {
+        "name" : "instragram",
+        "logo" : "https://qrfy.com/static/media/circle_insta_logo_color.022595a2228e99d9ff49.png"
+    },
+    {
+        "name" : "linkdin",
+        "logo" : "https://qrfy.com/static/media/circle_linkedin_logo.af3996e76664d75efb1bd61c74fd7c38.svg"
+    },
+    {
+        "name" : "x",
+        "logo" : "https://qrfy.com/static/media/circle_x_logo.0eb6208d4be827600a07898ebf3e2c24.svg"
+    }
+
+
+]

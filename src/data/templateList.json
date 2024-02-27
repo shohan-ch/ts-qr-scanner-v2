@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Default",
+    "image": "https://qrfy.com/static/media/template-default.b17ea330621f42eee573.webp"
+  },
+  {
+    "id": 2,
+    "name": "Template 1",
+    "image": "https://qrfy.com/static/media/template-1.86cdec03a4367431fb8c.webp"
+  },
+  {
+    "id": 3,
+    "name": "Template 2",
+    "image": "https://qrfy.com/static/media/template-2.9e2d466f30493e406f58.webp"
+  }
+]

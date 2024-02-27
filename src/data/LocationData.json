@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "street": "mirpur",
+    "number": "15",
+    "postalCode": "001",
+    "city": "Habiganj",
+    "state":"Sylhet",
+    "country": "Bangladesh"
+  },
+  {
+    "id": 2,
+    "street": "mirp",
+    "number": "25",
+    "postalCode": "10001",
+    "city": "New York",
+    "state":"Ny",
+    "country": "USA"
+  },
+  {
+    "id": 3,
+    "street": "Champs-Élysées",
+    "number": "10",
+    "postalCode": "75008",
+    "city": "Paris",
+    "state":"Fra",
+    "country": "France"
+  },
+  {
+    "id": 4,
+    "street": "Oxford Street",
+    "number": "45",
+    "postalCode": "W1D 1AW",
+    "city": "London",
+    "state":"Ukas",
+    "country": "UK"
+  },
+  {
+    "id": 5,
+    "street": "Shibuya Crossing",
+    "number": "7",
+    "postalCode": "150-0002",
+    "city": "Tokyo",
+    "state":"Jap",
+    "country": "Japan"
+  },
+  {
+    "id": 6,
+    "street": "Piazza San Marco",
+    "number": "20",
+    "postalCode": "30124",
+    "city": "Venice",
+    "state":"Ita",
+    "country": "Italy"
+  },
+  {
+    "id": 7,
+    "street": "Alexanderplatz",
+    "number": "12",
+    "postalCode": "10178",
+    "city": "Berlin",
+    "state":"Hiko",
+    "country": "Germany"
+  },
+  {
+    "id": 8,
+    "street": "Sydney Opera House",
+    "number": "2",
+    "postalCode": "2000",
+    "city": "Sydney",
+    "state":"Mak",
+    "country": "Australia"
+  },
+  {
+    "id": 9,
+    "street": "Copacabana Beach",
+    "number": "30",
+    "postalCode": "22070-011",
+    "city": "Rio de Janeiro",
+    "state":"Zil",
+    "country": "Brazil"
+  },
+  {
+    "id": 10,
+    "street": "Red Square",
+    "number": "5",
+    "postalCode": "109012",
+    "city": "Moscow",
+    "state":"SSia",
+    "country": "Russia"
+  }
+]
