@@ -1,30 +1,16 @@
 import React, { FC, useEffect, useState } from "react";
-import ArticleIndex from "../../components/Article/ArticleIndex";
-import VcardIndex from "../../components/Vcard/VcardIndex";
-import ProgressStepper from "./Design/ProgressStepper";
 import BreadcrumbStepper from "./Design/BreadcrumbStepper";
+interface Components {
+  step: number;
+  component: React.ReactNode;
+}
 
-let StepperComponents = [
-  {
-    step: 1,
-    component: <VcardIndex />,
-  },
-  {
-    step: 2,
-    component: <ArticleIndex />,
-  },
-  // {
-  //   step: 3,
-  //   component: <>Step 3</>,
-  // },
-  // {
-  //   step: 4,
-  //   component: <>Step 4</>,
-  // },
-];
+interface ComponentProps {
+  components: Components[];
+}
 
-const Stepper: FC = () => {
-  const NUM_OF_STEPS = StepperComponents.length;
+const Stepper: FC<ComponentProps> = ({ components }) => {
+  const NUM_OF_STEPS = components.length;
   const [selectedStep, setSelectedStep] = useState<any>(1);
   const [renderComponent, setRenderComponent] = useState<any>(null);
 
@@ -40,8 +26,8 @@ const Stepper: FC = () => {
 
   useEffect(() => {
     if (selectedStep) {
-      let renderComponent = StepperComponents.find(
-        (component) => component.step == selectedStep
+      let renderComponent = components.find(
+        (component: any) => component.step == selectedStep
       );
       setRenderComponent(renderComponent);
     }
