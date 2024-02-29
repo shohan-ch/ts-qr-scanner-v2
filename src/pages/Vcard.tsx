@@ -22,7 +22,9 @@ const stepperComponents = [
 const Vcard = () => {
   return (
     <>
-      <Stepper components={stepperComponents} />
+      <div className="mx-auto max-w-7xl">
+        <Stepper components={stepperComponents} />
+      </div>
     </>
   );
 };
