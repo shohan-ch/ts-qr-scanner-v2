@@ -1,8 +1,8 @@
 import React, { ReactEventHandler, useState } from "react";
 import Input from "../../utils/Forms/Input";
 import { useData, useDispatchData } from "../../contextApi/DataContext";
+import VcardAppearence from "./Appearence/Index";
 const VcardIndex = () => {
-  // const [formData, setFormData] = useState<object | null>(null);
   const data = useData();
   const formDispatch = useDispatchData();
 
@@ -18,26 +18,12 @@ const VcardIndex = () => {
   };
 
   console.log(data);
-  // setFormData({ ...formData, [name]: value });
 
   return (
     <>
       <div className="my-5">
         <h2>Complete the content of the QR</h2>
-
-        <Input
-          name="qrcodeName"
-          handleChange={handleInputChange}
-          placeHolder="Name of qr code"
-          label="Name"
-        />
-
-        <Input
-          name="email"
-          handleChange={handleInputChange}
-          placeHolder="Email"
-          label="Email"
-        />
+        <VcardAppearence />
       </div>
     </>
   );
