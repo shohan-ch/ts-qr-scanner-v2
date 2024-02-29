@@ -1,26 +1,18 @@
 import { useData, useDispatchData } from "contextApi/DataContext";
 import BaseInput from "utils/Forms/BaseInput";
 import templateList from "../../../data/templateList.json";
+import { useInputHelper } from "helpers/FormHandler";
 
 const VcardAppearence = () => {
   const data = useData();
-  const formDispatch = useDispatchData();
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    formDispatch({
-      type: "ADD",
-      payload: {
-        name: name,
-        value: value,
-      },
-    });
-  };
+  const handleInput = useInputHelper();
+  console.log(data);
 
   return (
     <>
       <BaseInput
         name="qrTitle"
-        handleChange={handleInputChange}
+        handleChange={handleInput}
         placeHolder="Name of qr code"
         label="Name"
       />
@@ -36,10 +28,10 @@ const VcardAppearence = () => {
                   id={list.name}
                   name="template"
                   value={list.name}
-                  onChange={handleInputChange}
+                  onChange={handleInput}
                 />
                 <label
-                  className="block p-4 border-2 cursor-pointer w-[25vw] peer-checked:border-red-500"
+                  className="block p-4 border-2 cursor-pointer w-[200px] peer-checked:border-red-500"
                   htmlFor={list.name}
                 >
                   <div className="bg-white rounded-lg shadow-lg">
@@ -59,44 +51,6 @@ const VcardAppearence = () => {
             </>
           ))}
       </div>
-      {/* 
-      {templateList.map((list, index) => (
-        <>{list.name}</>
-      ))} */}
-
-      {/* <div className="relative flex gap-2">
-        <div>
-          <input
-            className="sr-only peer"
-            type="radio"
-            id="template1"
-            name="template"
-            value="template1"
-          />
-          <label
-            htmlFor="template1"
-            className="p-5 border size-10 peer-checked:border peer-checked:border-red-400 "
-          >
-            Yes
-          </label>
-        </div>
-
-        <div>
-          <input
-            className="sr-only peer"
-            type="radio"
-            id="template2"
-            name="template"
-            value="template1"
-          />
-          <label
-            htmlFor="template2"
-            className="p-5 border size-10 peer-checked:border peer-checked:border-red-400 "
-          >
-            No
-          </label>
-        </div>
-      </div> */}
     </>
   );
 };
