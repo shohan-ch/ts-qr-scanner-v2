@@ -42,7 +42,7 @@ const Stepper: FC<ComponentProps> = ({ components }) => {
       <BreadcrumbStepper
         selectedStep={selectedStep}
         numOfSteps={NUM_OF_STEPS}
-        stepperTitle={["Personal", "Account", "Success"]}
+        stepperTitle={["Type of Qr code", "Design", "Content"]}
         setSelectedStep={setSelectedStep}
       />
 

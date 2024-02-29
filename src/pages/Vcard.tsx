@@ -23,7 +23,6 @@ const Vcard = () => {
   return (
     <>
       <Stepper components={stepperComponents} />
-      {/* <VcardIndex /> */}
     </>
   );
 };
