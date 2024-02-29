@@ -20,7 +20,6 @@ const VcardAppearence = () => {
 
       <Collapse
         option={{
-          iconName: "icon",
           title: "Appearnce",
           subtitle: "Customize style",
         }}
