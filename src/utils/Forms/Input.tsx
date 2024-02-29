@@ -18,7 +18,7 @@ const Input: React.FC<InputProps> = (props) => {
           htmlFor="first_name"
           className="block my-2 text-sm font-medium text-gray-900"
         >
-          First name
+          {label}
         </label>
       )}
       <input

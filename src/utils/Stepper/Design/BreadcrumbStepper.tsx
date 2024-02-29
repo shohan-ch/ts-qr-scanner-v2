@@ -17,6 +17,7 @@ const BreadcrumbStepper: FC<SelectedStep> = ({
   for (let i = 1; i <= numOfSteps; i++) {
     list.push(
       <li
+        key={i}
         onClick={() => setSelectedStep(i)}
         className={` ${
           selectedStep >= i ? "text-blue-600" : ""

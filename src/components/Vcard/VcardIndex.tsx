@@ -29,8 +29,14 @@ const VcardIndex = () => {
           name="qrcodeName"
           handleChange={handleInputChange}
           placeHolder="Name of qr code"
-          style="border"
           label="Name"
+        />
+
+        <Input
+          name="email"
+          handleChange={handleInputChange}
+          placeHolder="Email"
+          label="Email"
         />
       </div>
     </>
