@@ -1,5 +1,5 @@
 import { useData, useDispatchData } from "contextApi/DataContext";
-import Input from "utils/Forms/Input";
+import BaseInput from "utils/Forms/BaseInput";
 import templateList from "../../../data/templateList.json";
 
 const VcardAppearence = () => {
@@ -18,7 +18,7 @@ const VcardAppearence = () => {
 
   return (
     <>
-      <Input
+      <BaseInput
         name="qrTitle"
         handleChange={handleInputChange}
         placeHolder="Name of qr code"

@@ -1,5 +1,5 @@
 import React, { ReactEventHandler, useState } from "react";
-import Input from "../../utils/Forms/Input";
+import Input from "../../utils/Forms/BaseInput";
 import { useData, useDispatchData } from "../../contextApi/DataContext";
 import VcardAppearence from "./Appearence/Index";
 const VcardIndex = () => {

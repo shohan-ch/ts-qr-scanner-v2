@@ -8,7 +8,7 @@ interface InputProps {
   label?: string;
 }
 
-const Input: React.FC<InputProps> = (props) => {
+const BaseInput: React.FC<InputProps> = (props) => {
   const { handleChange, name, placeHolder, style, type, label } = props;
 
   return (
@@ -34,4 +34,4 @@ const Input: React.FC<InputProps> = (props) => {
   );
 };
 
-export default Input;
+export default BaseInput;
