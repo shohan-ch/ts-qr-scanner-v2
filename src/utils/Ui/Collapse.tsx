@@ -88,9 +88,9 @@ const Collapse: FC<CollapseProps> = (props) => {
 
   return (
     <>
-      <div className="px-2 shadow-md">
+      <div className={`${!isVisible && "border-b"}  border-gray-200 `}>
         <div
-          className={`flex items-center p-3 cursor-pointer  ${
+          className={`flex items-center py-2 cursor-pointer   ${
             subtitle && "justify-between"
           }`}
           onClick={handleCollapse}
@@ -99,8 +99,8 @@ const Collapse: FC<CollapseProps> = (props) => {
         </div>
         {/* Render children */}
         <div
-          className={`overflow-hidden transition-all duration-500 ${
-            isVisible ? "max-h-[500px]" : "max-h-0"
+          className={`overflow-hidden py-1 transition-all duration-500  ${
+            isVisible ? "max-h-screen" : "max-h-0"
           }`}
         >
           <div>{children}</div>
