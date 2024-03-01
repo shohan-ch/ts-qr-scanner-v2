@@ -1,8 +1,8 @@
 import { FC, ReactNode, useState } from "react";
 
 const ROTATE_OPTION = {
-  left: "90",
-  right: "180",
+  LEFT: "90",
+  RIGHT: "180",
 };
 
 const Icons = {
@@ -10,7 +10,7 @@ const Icons = {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="26"
-      height="2 6"
+      height="26"
       fill="currentColor"
       className="bi bi-badge-ad"
       viewBox="0 0 16 16"
@@ -25,13 +25,13 @@ const Icons = {
       width="26"
       height="26"
       fill="currentColor"
-      className={`${
-        isVisible ? "rotate-" + ROTATE_OPTION.left : ""
-      } transition-all duration-500 bi bi-arrow-right-short`}
+      className={`transition-all duration-500 bi bi-arrow-right-short ${
+        isVisible && "rotate-" + ROTATE_OPTION.LEFT
+      }`}
       viewBox="0 0 16 16"
     >
       <path
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"
       />
     </svg>
@@ -58,25 +58,44 @@ const Collapse: FC<CollapseProps> = (props) => {
     setIsVisible(!isVisible);
   };
 
+  const headerOfSubtitle = (
+    <>
+      <div className="flex items-center gap-x-4">
+        {iconName || Icons["apearence"]}
+        <div>
+          <h3 className="font-bold">{title}</h3>
+          <p className="mt-2 text-xs text-gray-700">{subtitle}</p>
+        </div>
+      </div>
+      <div className="p-1 rounded-full shadow bg-gray-50 ">
+        {Icons.rightArrow(isVisible)}
+      </div>
+    </>
+  );
+
+  const headerWithoutSubtitle = (
+    <>
+      <div className="flex items-center gap-x-4 ">
+        <div className="p-1 rounded-full shadow bg-gray-50 ">
+          {Icons.rightArrow(isVisible)}
+        </div>
+        <div>
+          <p className="text-sm">{title}</p>
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <>
-      <div className="px-2 py-1 shadow-md ">
+      <div className="px-2 shadow-md">
         <div
-          className="flex items-center justify-between p-3 cursor-pointer"
+          className={`flex items-center p-3 cursor-pointer  ${
+            subtitle && "justify-between"
+          }`}
           onClick={handleCollapse}
         >
-          {/* Title section */}
-          <div className="flex items-center gap-x-4">
-            {iconName || Icons["apearence"]}
-            <div>
-              <h3 className="font-bold">{title}</h3>
-              <p className="mt-2 text-xs text-gray-700">{subtitle}</p>
-            </div>
-          </div>
-          {/* Collapse Icon */}
-          <div className="p-1 rounded-full shadow bg-gray-50 ">
-            {Icons.rightArrow(isVisible)}
-          </div>
+          {subtitle ? headerOfSubtitle : headerWithoutSubtitle}
         </div>
         {/* Render children */}
         <div
