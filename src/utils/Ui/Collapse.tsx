@@ -99,7 +99,7 @@ const Collapse: FC<CollapseProps> = (props) => {
         </div>
         {/* Render children */}
         <div
-          className={`overflow-hidden py-1 transition-all duration-500  ${
+          className={`overflow-hidden transition-all duration-500  ${
             isVisible ? "max-h-screen" : "max-h-0"
           }`}
         >

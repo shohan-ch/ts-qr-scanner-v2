@@ -1,10 +1,10 @@
 import { useData } from "contextApi/DataContext";
 import { useInputHelper } from "helpers/FormHandler";
 import React from "react";
-import BaseInput from "utils/Forms/BaseInput";
 import Collapse from "utils/Ui/Collapse";
 import ColorPicker from "./ColorPicker";
 import TemplateList from "./TemplateList";
+import BaseInput from "utils/Forms/BaseInput";
 
 const VcardAppearence = () => {
   const data = useData();
