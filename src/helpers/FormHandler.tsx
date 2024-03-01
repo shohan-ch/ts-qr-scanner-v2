@@ -3,7 +3,9 @@ import React from "react";
 
 export const useInputHelper = () => {
   const formDispatch = useDispatchData();
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     formDispatch({
       type: "ADD",
