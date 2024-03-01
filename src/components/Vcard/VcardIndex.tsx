@@ -5,6 +5,8 @@ import VcardAppearence from "./Appearence/Index";
 const VcardIndex = () => {
   const data = useData();
 
+  console.log(data, "from vcard index");
+
   return (
     <>
       <div className="my-5 ">

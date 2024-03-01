@@ -9,7 +9,7 @@ import TemplateList from "./TemplateList";
 const VcardAppearence = () => {
   const data = useData();
   const handleInput = useInputHelper();
-  console.log(data);
+  // console.log(data);
 
   const collapseComponents = [
     {
