@@ -15,7 +15,7 @@ const About = (props: Props) => {
   };
   return (
     <>
-      <BaseModal title="Heading title" ref={modalRef}>
+      <BaseModal ref={modalRef}>
         <p>Lorem ipsum dolor sit amet.</p>
         <p className="p-4">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel debitis

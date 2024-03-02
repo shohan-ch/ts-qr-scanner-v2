@@ -1,7 +1,7 @@
 import { ReactNode, forwardRef, useImperativeHandle, useState } from "react";
 
 type Props = {
-  title: string;
+  title?: string;
   children: ReactNode;
 };
 
@@ -41,8 +41,10 @@ const BaseModal = (props: Props, ref: any) => {
     <div onClick={handleModal}>
       <div
         className={`${
-          isModalVisiable ? "block " : "hidden"
-        } flex justify-center h-screen transition-all duration-500 overflow-y-auto bg-gray-400 bg-opacity-50 overflow-x-hidden fixed top-0 right-0 left-0 z-50 items-center`}
+          isModalVisiable
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        } flex justify-center h-screen transition-all duration-500 ease-in-out overflow-y-auto bg-gray-600 bg-opacity-50 overflow-x-hidden fixed top-0 right-0 left-0 z-50 items-center`}
       >
         <div className="relative w-full max-w-2xl max-h-full p-4">
           {/* Modal content */}
