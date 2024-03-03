@@ -50,3 +50,24 @@ export const useDeleteHeleper = () => {
 
   return handleDelete;
 };
+
+export const useMultipleInputHelper = () => {
+  const formDispatch = useDispatchData();
+
+  const handleMultipleInput =
+    (category: string, index: number) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      formDispatch({
+        type: "ADD_MULTIPLE",
+        payload: {
+          category: category,
+          index: index,
+          name: name,
+          value: value,
+        },
+      });
+    };
+
+  return handleMultipleInput;
+};

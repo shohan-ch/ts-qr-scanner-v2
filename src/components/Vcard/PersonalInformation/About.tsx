@@ -67,9 +67,9 @@ const About = (props: Props) => {
       <button
         onClick={handleModal}
         type="button"
-        className="p-2 mt-5 text-white bg-blue-600"
+        className="p-2 my-4 ml-1 text-black rounded-full shadow-lg ring-blue-600 ring"
       >
-        Image upload
+        Image upload <span className="font-semibold text-blue-600 ">+</span>
       </button>
       <div className="flex flex-wrap justify-between w-full gap-4">
         <div className="w-[48%]">

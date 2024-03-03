@@ -34,6 +34,22 @@ const DataReducer = (state: any, action: any) => {
       };
     }
 
+    case "ADD_MULTIPLE": {
+      const { category, index, name, value } = action.payload;
+      const categoryArray = state[category] || [];
+      const updatedCategoryArray = categoryArray.map((item: any) =>
+        item.id === index ? { ...item, [name]: value } : item
+      );
+      let newState = {
+        ...state,
+        [category]: categoryArray.some((item: any) => item.id === index)
+          ? updatedCategoryArray
+          : [...updatedCategoryArray, { id: index, [name]: value }],
+      };
+      console.log(newState, "new state");
+      return newState;
+    }
+
     default:
       throw new Error("Error cause unknown action type! " + type);
       break;

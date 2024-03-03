@@ -1,12 +1,18 @@
 import Collapse from "utils/Ui/Collapse";
 import About from "./About";
 import React from "react";
+import ContactInfo from "./ContactInfo";
 
 const PersonalInformation = () => {
   const collapseComponents = [
     {
       title: "About you",
       component: <About />,
+    },
+
+    {
+      title: "Contact info",
+      component: <ContactInfo />,
     },
   ];
 
