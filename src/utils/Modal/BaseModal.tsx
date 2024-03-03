@@ -38,8 +38,9 @@ const BaseModal = (props: Props, ref: any) => {
   });
 
   return (
-    <div onClick={handleModal}>
+    <div>
       <div
+        // onClick={handleModal}
         className={`${
           isModalVisiable
             ? "opacity-100 pointer-events-auto"

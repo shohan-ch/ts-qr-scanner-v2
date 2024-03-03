@@ -1,6 +1,6 @@
 import React, { Dispatch, createContext, useContext, useReducer } from "react";
 
-export const DataContext = createContext<object>({});
+export const DataContext = createContext<object | any>({});
 export const DispatchDataContext = createContext<any>(null);
 
 const DataContextProvider = ({ children }: { children: React.ReactNode }) => {

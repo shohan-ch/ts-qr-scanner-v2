@@ -1,5 +1,7 @@
-import { useInputHelper } from "helpers/FormHandler";
-import { useRef } from "react";
+import { useData } from "contextApi/DataContext";
+import { useFileUpload, useInputHelper } from "helpers/FormHandler";
+import React, { useRef } from "react";
+
 import BaseInput from "utils/Forms/BaseInput";
 import BaseTextArea from "utils/Forms/BaseTextArea";
 import BaseModal from "utils/Modal/BaseModal";
@@ -9,22 +11,45 @@ type Props = {};
 const About = (props: Props) => {
   const modalRef = useRef<any>();
   const hanleInput = useInputHelper();
-
   const handleModal = () => {
     modalRef.current.toggleModal();
   };
+  const handleFileUpload = useFileUpload();
+
+  const formData = useData();
+
+  console.log(formData);
+
   return (
     <>
-      <BaseModal ref={modalRef}>
-        <p>Lorem ipsum dolor sit amet.</p>
-        <p className="p-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel debitis
-          porro minus reprehenderit enim non quidem, inventore aperiam quo quae
-          explicabo eius vero. Cum recusandae rem blanditiis veniam possimus
-          quas fuga, tempora, nemo consequuntur non quidem quis inventore
-          aliquam? Minus error id consequuntur, sint deserunt voluptatem
-          aperiam. Molestias, facilis iste!
-        </p>
+      <BaseModal title="Upload photo" ref={modalRef}>
+        <div className="flex items-center justify-center h-24 border border-blue-600 border-dashed">
+          <div className="relative ">
+            <input
+              type="file"
+              id="file"
+              name="file"
+              className="absolute hidden w-full"
+              onChange={handleFileUpload}
+            />
+            {!formData.photo ? (
+              <label htmlFor="file" className="w-full cursor-pointer ">
+                Upload Photo
+              </label>
+            ) : (
+              <div className="flex items-center justify-center gap-x-2">
+                <img
+                  width={50}
+                  height={50}
+                  src={URL.createObjectURL(formData.photo)}
+                  alt="img"
+                  className="p-1 border border-gray-400 rounded shadow-sm"
+                />
+                <div className="text-2xl font-semibold text-gray-600">X</div>
+              </div>
+            )}
+          </div>
+        </div>
       </BaseModal>
 
       <button
