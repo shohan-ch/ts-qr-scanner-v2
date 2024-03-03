@@ -27,6 +27,13 @@ const DataReducer = (state: any, action: any) => {
       };
     }
 
+    case "DELETE": {
+      delete state[payload.name];
+      return {
+        ...state,
+      };
+    }
+
     default:
       throw new Error("Error cause unknown action type! " + type);
       break;

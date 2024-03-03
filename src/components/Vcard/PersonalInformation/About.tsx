@@ -1,5 +1,9 @@
 import { useData } from "contextApi/DataContext";
-import { useFileUpload, useInputHelper } from "helpers/FormHandler";
+import {
+  useDeleteHeleper,
+  useFileUploadHeleper,
+  useInputHelper,
+} from "helpers/FormHandler";
 import React, { useRef } from "react";
 
 import BaseInput from "utils/Forms/BaseInput";
@@ -14,17 +18,17 @@ const About = (props: Props) => {
   const handleModal = () => {
     modalRef.current.toggleModal();
   };
-  const handleFileUpload = useFileUpload();
+  const handleFileUpload = useFileUploadHeleper();
+
+  const handleDelete = useDeleteHeleper();
 
   const formData = useData();
-
-  console.log(formData);
 
   return (
     <>
       <BaseModal title="Upload photo" ref={modalRef}>
         <div className="flex items-center justify-center h-24 border border-blue-600 border-dashed">
-          <div className="relative ">
+          <div className="relative w-full h-full">
             <input
               type="file"
               id="file"
@@ -33,11 +37,14 @@ const About = (props: Props) => {
               onChange={handleFileUpload}
             />
             {!formData.photo ? (
-              <label htmlFor="file" className="w-full cursor-pointer ">
+              <label
+                htmlFor="file"
+                className="absolute flex items-center justify-center w-full h-full cursor-pointer "
+              >
                 Upload Photo
               </label>
             ) : (
-              <div className="flex items-center justify-center gap-x-2">
+              <div className="absolute flex items-center justify-center w-full h-full gap-x-2">
                 <img
                   width={50}
                   height={50}
@@ -45,7 +52,12 @@ const About = (props: Props) => {
                   alt="img"
                   className="p-1 border border-gray-400 rounded shadow-sm"
                 />
-                <div className="text-2xl font-semibold text-gray-600">X</div>
+                <div
+                  className="text-2xl font-semibold text-gray-600 cursor-pointer"
+                  onClick={() => handleDelete("photo")}
+                >
+                  X
+                </div>
               </div>
             )}
           </div>

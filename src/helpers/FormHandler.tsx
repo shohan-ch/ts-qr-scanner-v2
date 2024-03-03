@@ -18,7 +18,7 @@ export const useInputHelper = () => {
 
   return handleInputChange;
 };
-export const useFileUpload = () => {
+export const useFileUploadHeleper = () => {
   const formDispatch = useDispatchData();
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -34,4 +34,19 @@ export const useFileUpload = () => {
   };
 
   return handleFileChange;
+};
+
+export const useDeleteHeleper = () => {
+  const formDispatch = useDispatchData();
+
+  const handleDelete = (name: string) => {
+    formDispatch({
+      type: "DELETE",
+      payload: {
+        name: name,
+      },
+    });
+  };
+
+  return handleDelete;
 };
