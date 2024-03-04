@@ -39,7 +39,7 @@ const BaseMultipleSelect = (props: Props) => {
           type={type}
           name={name}
           placeHolder={placeHolder}
-          handleChange={handleMultipleInput("email", index)}
+          handleChange={handleMultipleInput(title, index)}
         />
       );
     } else if (type === "textarea") {
@@ -47,7 +47,7 @@ const BaseMultipleSelect = (props: Props) => {
         <BaseTextArea
           name={name}
           placeHolder={placeHolder}
-          handleChange={handleMultipleInput("email", index)}
+          handleChange={handleMultipleInput(title, index)}
         />
       );
     } else {
