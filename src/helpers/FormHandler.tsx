@@ -71,3 +71,19 @@ export const useMultipleInputHelper = () => {
 
   return handleMultipleInput;
 };
+
+export const useMultipleDeleteHelper = () => {
+  const formDispatch = useDispatchData();
+
+  const handleMultipDelete = (category: string, index: number) => {
+    formDispatch({
+      type: "DELETE_MULTIPLE",
+      payload: {
+        category: category,
+        index: index,
+      },
+    });
+  };
+
+  return handleMultipDelete;
+};

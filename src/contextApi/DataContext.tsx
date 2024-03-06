@@ -50,6 +50,16 @@ const DataReducer = (state: any, action: any) => {
       return newState;
     }
 
+    case "DELETE_MULTIPLE": {
+      const { category, index } = action.payload;
+
+      let deleteByCategory = state[category].filter(
+        (item: any) => item.id != index
+      );
+
+      return { ...state, [category]: deleteByCategory };
+    }
+
     default:
       throw new Error("Error cause unknown action type! " + type);
       break;

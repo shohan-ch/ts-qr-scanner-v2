@@ -1,7 +1,11 @@
 import { useState } from "react";
 import BaseInput from "./BaseInput";
 import BaseTextArea from "./BaseTextArea";
-import { useMultipleInputHelper } from "helpers/FormHandler";
+import {
+  useMultipleDeleteHelper,
+  useMultipleInputHelper,
+} from "helpers/FormHandler";
+import { useData } from "contextApi/DataContext";
 
 type ObjectType = {
   name: string;
@@ -18,7 +22,9 @@ const BaseMultipleSelect = (props: Props) => {
   const { fields, title } = props;
   const [count, setCount] = useState(1);
   const [incrementNum, setIncrementNum] = useState([1]);
+  const formData = useData();
 
+  const multipleDelete = useMultipleDeleteHelper();
   const handleMultipleInput = useMultipleInputHelper();
 
   const handleIncrement = () => {
@@ -27,6 +33,7 @@ const BaseMultipleSelect = (props: Props) => {
   };
 
   const handleDecrement = (index: number) => () => {
+    multipleDelete(title, index);
     const decrement = incrementNum.filter((item) => item != index);
     setIncrementNum(decrement);
   };
@@ -54,7 +61,7 @@ const BaseMultipleSelect = (props: Props) => {
       return "The form input not available for this type " + type;
     }
   };
-
+  console.log(formData, "multi select");
   return (
     <>
       {incrementNum.map((num, index) => (
