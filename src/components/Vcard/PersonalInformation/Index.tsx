@@ -2,6 +2,7 @@ import Collapse from "utils/Ui/Collapse";
 import About from "./About";
 import React from "react";
 import ContactInfo from "./ContactInfo";
+import LocationInfo from "./LocationInfo";
 
 const PersonalInformation = () => {
   const collapseComponents = [
@@ -13,6 +14,10 @@ const PersonalInformation = () => {
     {
       title: "Contact info",
       component: <ContactInfo />,
+    },
+    {
+      title: "Location",
+      component: <LocationInfo />,
     },
   ];
 

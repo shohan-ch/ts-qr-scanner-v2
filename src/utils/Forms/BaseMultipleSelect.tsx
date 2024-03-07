@@ -72,7 +72,7 @@ const BaseMultipleSelect = (props: Props) => {
             </div>
           ))}
 
-          <button onClick={handleDecrement(num)}>X {num}</button>
+          <button onClick={handleDecrement(num)}>X</button>
         </div>
       ))}
       <button
