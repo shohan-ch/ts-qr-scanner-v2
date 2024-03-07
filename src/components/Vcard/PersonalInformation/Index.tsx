@@ -2,7 +2,7 @@ import Collapse from "utils/Ui/Collapse";
 import About from "./About";
 import React from "react";
 import ContactInfo from "./ContactInfo";
-import LocationInfo from "./LocationInfo";
+import LocationIndex from "./Location/LocationIndex";
 
 const PersonalInformation = () => {
   const collapseComponents = [
@@ -17,7 +17,7 @@ const PersonalInformation = () => {
     },
     {
       title: "Location",
-      component: <LocationInfo />,
+      component: <LocationIndex />,
     },
   ];
 
