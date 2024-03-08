@@ -87,19 +87,31 @@ const CompleteLocation = (props: Props) => {
               handleChange={handleLoctionInputChange}
               {...(isTyping
                 ? {}
-                : { value: suggestLocation.id ? suggestLocation.street : "" })}
+                : {
+                    value: suggestLocation.street ? suggestLocation.street : "",
+                  })}
             />
             <BaseInput
               name="number"
               placeHolder="Number"
-              handleChange={() => console.log(1)}
-              {...(isTyping ? {} : { value: suggestLocation.number })}
+              handleChange={handleLoctionInputChange}
+              {...(isTyping
+                ? {}
+                : {
+                    value: suggestLocation.number ? suggestLocation.number : "",
+                  })}
             />
             <BaseInput
               name="postalCode"
               placeHolder="PostalCode"
-              handleChange={() => console.log(1)}
-              {...(isTyping ? {} : { value: suggestLocation.postalCode })}
+              handleChange={handleLoctionInputChange}
+              {...(isTyping
+                ? {}
+                : {
+                    value: suggestLocation.postalCode
+                      ? suggestLocation.postalCode
+                      : "",
+                  })}
             />
           </div>
 
@@ -108,16 +120,26 @@ const CompleteLocation = (props: Props) => {
               <BaseInput
                 name="city"
                 placeHolder="City"
-                handleChange={() => console.log(1)}
-                {...(isTyping ? {} : { value: suggestLocation.city })}
+                handleChange={handleLoctionInputChange}
+                {...(isTyping
+                  ? {}
+                  : {
+                      value: suggestLocation.city ? suggestLocation.city : "",
+                    })}
               />
             </div>
             <div className="w-1/2">
               <BaseInput
                 name="country"
                 placeHolder="Country"
-                handleChange={() => console.log(1)}
-                {...(isTyping ? {} : { value: suggestLocation.country })}
+                handleChange={handleLoctionInputChange}
+                {...(isTyping
+                  ? {}
+                  : {
+                      value: suggestLocation.country
+                        ? suggestLocation.country
+                        : "",
+                    })}
               />
             </div>
           </div>
