@@ -6,10 +6,11 @@ interface InputProps {
   style?: string;
   type?: string;
   label?: string;
+  value?: string | number;
 }
 
 const BaseInput: React.FC<InputProps> = (props) => {
-  const { handleChange, name, placeHolder, style, type, label } = props;
+  const { handleChange, name, placeHolder, style, type, label, value } = props;
 
   return (
     <>
@@ -26,6 +27,7 @@ const BaseInput: React.FC<InputProps> = (props) => {
           onChange={handleChange}
           type={type || "text"}
           name={name}
+          value={value && value}
           placeholder={placeHolder}
           className={`${
             style && style
