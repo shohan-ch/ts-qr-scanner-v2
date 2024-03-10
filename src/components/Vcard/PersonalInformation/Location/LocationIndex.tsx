@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import BaseLabelRadio from "utils/Forms/BaseLabelRadio";
 import CompleteLocation from "./CompleteLocation";
 import UrlLocation from "./UrlLocation";
+import { useDeleteHeleper } from "helpers/FormHandler";
 
 type Props = {};
 
 const LocationIndex = (props: Props) => {
   const [locationButton, setLocationButton] = useState("");
 
+  const handleInputDelete = useDeleteHeleper();
   const handleSelectButton = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLocationButton(e.target.value);
+    handleInputDelete("location");
   };
-
-  console.log(locationButton);
 
   return (
     <div>
