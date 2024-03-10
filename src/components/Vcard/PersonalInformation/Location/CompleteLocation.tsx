@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import BaseInput from "utils/Forms/BaseInput";
 import LocationData from "../../../../data/LocationData.json";
-import { useInputHelper, useLocationInputHelper } from "helpers/FormHandler";
+import {
+  useDeleteHeleper,
+  useInputHelper,
+  useLocationInputHelper,
+} from "helpers/FormHandler";
 import { useData } from "contextApi/DataContext";
 
 type Props = {};
@@ -12,6 +16,7 @@ const CompleteLocation = (props: Props) => {
   const [isTyping, setIsTyping] = useState(true);
 
   const handleInput = useLocationInputHelper();
+  const handleDelete = useDeleteHeleper();
 
   useEffect(() => {
     setIsTyping(false);
@@ -46,6 +51,7 @@ const CompleteLocation = (props: Props) => {
   const handleLocationDelete = () => {
     setIsTyping(false);
     setSuggestLocation({});
+    handleDelete("location");
   };
 
   console.log(useData());
