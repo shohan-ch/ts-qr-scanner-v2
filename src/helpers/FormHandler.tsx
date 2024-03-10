@@ -87,3 +87,19 @@ export const useMultipleDeleteHelper = () => {
 
   return handleMultipDelete;
 };
+
+export const useLocationInputHelper = () => {
+  const formDispatch = useDispatchData();
+
+  const handleLocation = (data: any, name?: string) => {
+    formDispatch({
+      type: "ADD_LOCATION",
+      payload: {
+        name: name,
+        value: data,
+      },
+    });
+  };
+
+  return handleLocation;
+};

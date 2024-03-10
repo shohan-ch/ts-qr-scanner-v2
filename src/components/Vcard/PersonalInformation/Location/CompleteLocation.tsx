@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import BaseInput from "utils/Forms/BaseInput";
 import LocationData from "../../../../data/LocationData.json";
+import { useInputHelper, useLocationInputHelper } from "helpers/FormHandler";
+import { useData } from "contextApi/DataContext";
 
 type Props = {};
 
@@ -8,6 +10,8 @@ const CompleteLocation = (props: Props) => {
   const [locations, setLocations] = useState<any[]>([]);
   const [suggestLocation, setSuggestLocation] = useState<object | any>({});
   const [isTyping, setIsTyping] = useState(true);
+
+  const handleInput = useLocationInputHelper();
 
   useEffect(() => {
     setIsTyping(false);
@@ -26,15 +30,25 @@ const CompleteLocation = (props: Props) => {
     const suggestLocation = locations.find(
       (location) => location.street == e.currentTarget.value
     );
+
+    handleInput(suggestLocation);
     setSuggestLocation(suggestLocation);
+
     setLocations([]);
   };
 
   const handleLoctionInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsTyping(true);
+    const { name, value } = e.target;
+    handleInput(value, name);
   };
-  console.log(suggestLocation);
 
+  const handleLocationDelete = () => {
+    setIsTyping(false);
+    setSuggestLocation({});
+  };
+
+  console.log(useData());
   return (
     <div className="mt-4">
       <div className="flex items-center w-full gap-x-2">
@@ -49,16 +63,13 @@ const CompleteLocation = (props: Props) => {
         <div className="w-[20%]">
           <button
             className="w-full p-2 text-white bg-blue-600 rounded-md"
-            onClick={() => {
-              setIsTyping(false);
-              setSuggestLocation({});
-            }}
+            onClick={handleLocationDelete}
           >
             Delete
           </button>
         </div>
       </div>
-      {/* Location suggest list */}
+      {/* Location suggest list like Select Box */}
       <div
         className={`${
           locations.length ? "block" : "hidden"

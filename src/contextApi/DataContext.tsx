@@ -60,6 +60,22 @@ const DataReducer = (state: any, action: any) => {
       return { ...state, [category]: deleteByCategory };
     }
 
+    case "ADD_LOCATION": {
+      const { value, name } = action.payload;
+      let locationAdd = name
+        ? { location: { ...state.location, [name]: value } }
+        : { location: { ...value } };
+      return { ...state, ...locationAdd };
+    }
+
+    case "DELETE_LOCATION": {
+      const { value, name } = action.payload;
+      let locationAdd = name
+        ? { location: { ...state.location, [name]: value } }
+        : { location: { ...value } };
+      return { ...state, ...locationAdd };
+    }
+
     default:
       throw new Error("Error cause unknown action type! " + type);
       break;
