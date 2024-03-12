@@ -133,6 +133,13 @@ const DataReducer = (state: any, action: any) => {
       return { ...state, [category]: deleteProfession };
     }
 
+    case "ADD_MULTIPLE_FILE": {
+      const { category, value } = action.payload;
+      let coverImages = state[category] || [];
+      let addImages = [...coverImages, { value }];
+      return { ...state, [category]: addImages };
+    }
+
     default:
       throw new Error("Error cause unknown action type! " + type);
       break;

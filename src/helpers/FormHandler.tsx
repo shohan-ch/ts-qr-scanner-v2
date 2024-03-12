@@ -36,6 +36,24 @@ export const useFileUploadHeleper = () => {
   return handleFileChange;
 };
 
+export const useMultipleFileUploadHeleper = () => {
+  const formDispatch = useDispatchData();
+  const handleMultipleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    if (files) {
+      formDispatch({
+        type: "ADD_MULTIPLE_FILE",
+        payload: {
+          category: "coverImages",
+          value: files[0],
+        },
+      });
+    }
+  };
+
+  return handleMultipleFileChange;
+};
+
 export const useDeleteHeleper = () => {
   const formDispatch = useDispatchData();
 

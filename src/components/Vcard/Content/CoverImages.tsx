@@ -1,14 +1,16 @@
-import React from "react";
+import { useMultipleFileUploadHeleper } from "helpers/FormHandler";
 import BaseFileUpload from "utils/Forms/BaseFileUpload";
 
 type Props = {};
 
 const CoverImages = (props: Props) => {
+  const handleMultipleFileUpload = useMultipleFileUploadHeleper();
   return (
     <>
       <BaseFileUpload
-        labelTitle="Upload Photo"
-        handleChange={() => console.log(1)}
+        name="coverImages"
+        labelTitle="Upload Photos"
+        handleChange={handleMultipleFileUpload}
       />
     </>
   );
