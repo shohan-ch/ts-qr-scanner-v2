@@ -68,7 +68,7 @@ const Companies = (props: Props) => {
     };
 
   return (
-    <div className="p-2 border rounded shadow">
+    <div className="p-2 border rounded shadow max-h-[540px] overflow-y-auto">
       {companyContainers.map((company, index) => (
         <div key={company.id}>
           <div className="flex justify-between">
