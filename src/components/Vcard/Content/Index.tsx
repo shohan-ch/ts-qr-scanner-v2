@@ -2,6 +2,7 @@ import React from "react";
 import Companies from "./Companies";
 import Collapse from "utils/Ui/Collapse";
 import Summary from "./Summary";
+import CoverImages from "./CoverImages";
 
 type Props = {};
 
@@ -14,6 +15,11 @@ const collapseComponents = [
   {
     title: "Summary",
     component: <Summary />,
+  },
+
+  {
+    title: "Images",
+    component: <CoverImages />,
   },
 ];
 

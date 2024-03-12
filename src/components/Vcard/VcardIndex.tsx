@@ -3,7 +3,7 @@ import Input from "../../utils/Forms/BaseTextArea";
 import { useData, useDispatchData } from "../../contextApi/DataContext";
 import VcardAppearence from "./Appearence/Index";
 import PersonalInformation from "./PersonalInformation/Index";
-import Content from "./Content";
+import Content from "./Content/Index";
 const VcardIndex = () => {
   const data = useData();
 
