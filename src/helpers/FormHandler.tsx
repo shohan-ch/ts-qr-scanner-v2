@@ -146,3 +146,20 @@ export const useProfessionInputHelper = () => {
 
   return handleProfessionAdd;
 };
+
+export const useProfessionDeleteHelper = () => {
+  const formDispatch = useDispatchData();
+
+  const handleProfessionDelete = (companyId: number, professionId: number) => {
+    formDispatch({
+      type: "DELETE_PROFESSION",
+      payload: {
+        category: "companies",
+        companyId: companyId,
+        professionId: professionId,
+      },
+    });
+  };
+
+  return handleProfessionDelete;
+};

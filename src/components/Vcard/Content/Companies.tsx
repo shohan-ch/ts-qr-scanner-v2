@@ -1,6 +1,7 @@
 import {
   useCompanyInputHelper,
   useMultipleDeleteHelper,
+  useProfessionDeleteHelper,
   useProfessionInputHelper,
 } from "helpers/FormHandler";
 import React, { useState } from "react";
@@ -13,6 +14,7 @@ const Companies = (props: Props) => {
   const handleCompanyInput = useCompanyInputHelper();
   const handleProfessionInput = useProfessionInputHelper();
   const handleCompanyDelete = useMultipleDeleteHelper();
+  const handleProfessionInputDelete = useProfessionDeleteHelper();
   const [companyContainers, setCompanyContainers] = useState<any[]>([
     { id: 1, professions: [{ id: 1 }] },
   ]);
@@ -62,6 +64,7 @@ const Companies = (props: Props) => {
           : company
       );
       setCompanyContainers(filterProfession);
+      handleProfessionInputDelete(companyId, professionId);
     };
 
   return (

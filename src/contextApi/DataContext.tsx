@@ -53,7 +53,6 @@ const DataReducer = (state: any, action: any) => {
     case "DELETE_MULTIPLE": {
       const { category, index } = action.payload;
 
-      alert(index);
       let deleteByCategory = state[category].filter(
         (item: any) => item.id !== index
       );
@@ -115,6 +114,23 @@ const DataReducer = (state: any, action: any) => {
           : { ...company };
       });
       return { ...state, [category]: adddProfession };
+    }
+
+    case "DELETE_PROFESSION": {
+      const { category, companyId, professionId } = action.payload;
+
+      let deleteProfession = state[category].map((company: any) =>
+        company.id === companyId
+          ? {
+              ...company,
+              professions: company.professions.filter(
+                (profession: any) => profession.id != professionId
+              ),
+            }
+          : company
+      );
+
+      return { ...state, [category]: deleteProfession };
     }
 
     default:
