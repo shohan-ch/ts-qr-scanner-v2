@@ -54,7 +54,6 @@ const CompleteLocation = (props: Props) => {
     handleDelete("location");
   };
 
-  console.log(useData());
   return (
     <div className="mt-4">
       <div className="flex items-center w-full gap-x-2">

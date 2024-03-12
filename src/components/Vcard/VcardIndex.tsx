@@ -3,6 +3,7 @@ import Input from "../../utils/Forms/BaseTextArea";
 import { useData, useDispatchData } from "../../contextApi/DataContext";
 import VcardAppearence from "./Appearence/Index";
 import PersonalInformation from "./PersonalInformation/Index";
+import Content from "./Content";
 const VcardIndex = () => {
   const data = useData();
 
@@ -15,6 +16,7 @@ const VcardIndex = () => {
         <div className="space-y-6">
           <VcardAppearence />
           <PersonalInformation />
+          <Content />
         </div>
       </div>
     </>

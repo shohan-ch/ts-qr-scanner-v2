@@ -1,11 +1,11 @@
-import { useState } from "react";
-import BaseInput from "./BaseInput";
-import BaseTextArea from "./BaseTextArea";
+import { useData } from "contextApi/DataContext";
 import {
   useMultipleDeleteHelper,
   useMultipleInputHelper,
 } from "helpers/FormHandler";
-import { useData } from "contextApi/DataContext";
+import { useState } from "react";
+import BaseInput from "./BaseInput";
+import BaseTextArea from "./BaseTextArea";
 
 type ObjectType = {
   name: string;
@@ -16,13 +16,13 @@ type ObjectType = {
 type Props = {
   title: string;
   fields: ObjectType[];
+  style?: string;
 };
 
 const BaseMultipleSelect = (props: Props) => {
-  const { fields, title } = props;
+  const { fields, title, style } = props;
   const [count, setCount] = useState(1);
   const [incrementNum, setIncrementNum] = useState([1]);
-  const formData = useData();
 
   const multipleDelete = useMultipleDeleteHelper();
   const handleMultipleInput = useMultipleInputHelper();
@@ -38,7 +38,7 @@ const BaseMultipleSelect = (props: Props) => {
     setIncrementNum(decrement);
   };
 
-  const selectInputFieldByType = (props: (typeof fields)[0], index: number) => {
+  const selectInputFieldByType = (props: (typeof fields)[0], id: number) => {
     const { type, name, placeHolder } = props;
     if (type === "text" || type === "email" || type === "password") {
       return (
@@ -46,7 +46,7 @@ const BaseMultipleSelect = (props: Props) => {
           type={type}
           name={name}
           placeHolder={placeHolder}
-          handleChange={handleMultipleInput(title, index)}
+          handleChange={handleMultipleInput(title, id)}
         />
       );
     } else if (type === "textarea") {
@@ -54,20 +54,19 @@ const BaseMultipleSelect = (props: Props) => {
         <BaseTextArea
           name={name}
           placeHolder={placeHolder}
-          handleChange={handleMultipleInput(title, index)}
+          handleChange={handleMultipleInput(title, id)}
         />
       );
     } else {
       return "The form input not available for this type " + type;
     }
   };
-  console.log(formData, "multi select");
   return (
     <>
       {incrementNum.map((num, index) => (
-        <div key={num} className="flex gap-x-4">
+        <div key={num} className="flex w-full gap-x-4">
           {fields.map((field, index) => (
-            <div key={index}>
+            <div key={index} className={style && style}>
               <div>{selectInputFieldByType(field, num)}</div>
             </div>
           ))}

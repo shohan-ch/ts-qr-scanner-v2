@@ -103,3 +103,46 @@ export const useLocationInputHelper = () => {
 
   return handleLocation;
 };
+
+export const useCompanyInputHelper = () => {
+  const formDispatch = useDispatchData();
+
+  const handleCompanyAdd =
+    (id: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+
+      formDispatch({
+        type: "ADD_COMPANY",
+        payload: {
+          category: "companies",
+          id: id,
+          name: name,
+          value: value,
+        },
+      });
+    };
+
+  return handleCompanyAdd;
+};
+
+export const useProfessionInputHelper = () => {
+  const formDispatch = useDispatchData();
+
+  const handleProfessionAdd =
+    (companyId: number, professionId: number) =>
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      formDispatch({
+        type: "ADD_COMPANY_PROFESSION",
+        payload: {
+          category: "companies",
+          companyId: companyId,
+          professionId: professionId,
+          name: name,
+          value: value,
+        },
+      });
+    };
+
+  return handleProfessionAdd;
+};

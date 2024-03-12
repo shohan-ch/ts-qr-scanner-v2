@@ -10,7 +10,6 @@ const UrlLocation = (props: Props) => {
 
   const handleInput = useInputHelper();
 
-  console.log(data);
   return (
     <div className="mt-4">
       <BaseInput

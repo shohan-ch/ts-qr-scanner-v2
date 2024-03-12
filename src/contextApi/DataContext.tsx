@@ -54,7 +54,7 @@ const DataReducer = (state: any, action: any) => {
       const { category, index } = action.payload;
 
       let deleteByCategory = state[category].filter(
-        (item: any) => item.id != index
+        (item: any) => item.id !== index
       );
 
       return { ...state, [category]: deleteByCategory };
@@ -74,6 +74,81 @@ const DataReducer = (state: any, action: any) => {
         ? { location: { ...state.location, [name]: value } }
         : { location: { ...value } };
       return { ...state, ...locationAdd };
+    }
+
+    case "ADD_COMPANY": {
+      const { category, value, name, id } = action.payload;
+      const selectCompanies = state[category] || [];
+      const updateCompnaies = selectCompanies.map((company: any) =>
+        company.id === id ? { ...company, [name]: value } : company
+      );
+      return {
+        ...state,
+        [category]: selectCompanies.some((item: any) => item.id === id)
+          ? updateCompnaies
+          : [...selectCompanies, { id: id, [name]: value }],
+      };
+    }
+
+    case "ADD_COMPANY_PROFESSION": {
+      const { category, value, name, companyId, professionId } = action.payload;
+      // alert(JSON.stringify(action.payload));
+      let selectCompanies = state[category] || [];
+
+      let adddProfession = selectCompanies.map((company: any) => {
+        return company.id === companyId
+          ? {
+              ...company,
+              professions:
+                company.professions ||
+                [].some((item: any) => item.id == professionId)
+                  ? company.professions.map((profession: any) => {
+                      return profession.id === professionId
+                        ? { ...profession, [name]: value }
+                        : { ...profession };
+                    })
+                  : [
+                      ...(company.professions || []),
+                      { id: professionId, [name]: value },
+                    ],
+            }
+          : { ...company };
+      });
+
+      console.log(adddProfession);
+
+      return { ...state, [category]: adddProfession };
+
+      // const selectCompanies = state[category] || [];
+      // const updateProfession = selectCompanies.map((company: any) =>
+      //   company.id === companyId
+      //     ? {
+      //         ...company,
+      //         professions: (state[category].professions || []).map(
+      //           (profession: any) =>
+      //             profession.id === professionId
+      //               ? { ...profession, [name]: value }
+      //               : { ...profession }
+      //         ),
+      //       }
+      //     : { ...company }
+      // );
+
+      // return {
+      //   ...state,
+      //   [category]: selectCompanies.map((company: any) => {
+      //     return company.id === companyId
+      //       ? {
+      //           ...company,
+      //           professions: (company[category]?.professions || []).some(
+      //             (profession: any) => profession.id === professionId
+      //           )
+      //             ? { ...updateProfession }
+      //             : { ...updateProfession, [name]: value },
+      //         }
+      //       : { ...company };
+      //   }),
+      // };
     }
 
     default:
