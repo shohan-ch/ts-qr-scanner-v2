@@ -80,7 +80,7 @@ export const useMultipleInputHelper = () => {
         type: "ADD_MULTIPLE",
         payload: {
           category: category,
-          index: index,
+          id: index,
           name: name,
           value: value,
         },

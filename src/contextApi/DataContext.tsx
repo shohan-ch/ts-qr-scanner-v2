@@ -35,19 +35,18 @@ const DataReducer = (state: any, action: any) => {
     }
 
     case "ADD_MULTIPLE": {
-      const { category, index, name, value } = action.payload;
-      const categoryArray = state[category] || [];
-      const updatedCategoryArray = categoryArray.map((item: any) =>
-        item.id === index ? { ...item, [name]: value } : item
-      );
-      let newState = {
-        ...state,
-        [category]: categoryArray.some((item: any) => item.id === index)
-          ? updatedCategoryArray
-          : [...updatedCategoryArray, { id: index, [name]: value }],
-      };
-      console.log(newState, "new state");
-      return newState;
+      const { category, id, name, value } = action.payload;
+      const selectCategory = state[category] || [];
+      const addStateByCategory = selectCategory.some(
+        (item: any) => item.id === id
+      )
+        ? selectCategory.map((category: any) => {
+            return category.id === id
+              ? { ...category, [name]: value }
+              : category;
+          })
+        : [...selectCategory, { id: id, [name]: value }];
+      return { ...state, [category]: addStateByCategory };
     }
 
     case "DELETE_MULTIPLE": {
@@ -70,10 +69,10 @@ const DataReducer = (state: any, action: any) => {
 
     case "DELETE_LOCATION": {
       const { value, name } = action.payload;
-      let locationAdd = name
+      let locationDelete = name
         ? { location: { ...state.location, [name]: value } }
         : { location: { ...value } };
-      return { ...state, ...locationAdd };
+      return { ...state, ...locationDelete };
     }
 
     case "ADD_COMPANY": {
