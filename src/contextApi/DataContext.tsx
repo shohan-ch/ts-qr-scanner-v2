@@ -139,6 +139,30 @@ const DataReducer = (state: any, action: any) => {
       return { ...state, [category]: addImages };
     }
 
+    case "ADD_SOCIAL": {
+      const { name, value, socialName } = action.payload;
+      const selectCategory = state.socialNetworks || [];
+      const addStateByCategory = selectCategory.some(
+        (item: any) => item.name === socialName
+      )
+        ? selectCategory.map((category: any) => {
+            return category.name === socialName
+              ? { ...category, [name]: value }
+              : category;
+          })
+        : [...selectCategory, { name: socialName, [name]: value }];
+      return { ...state, socialNetworks: addStateByCategory };
+    }
+
+    case "DELETE_SOCIAL": {
+      const { socialName } = action.payload;
+
+      const deleteSocial = state.socialNetworks.filter(
+        (social: any) => social.name !== socialName
+      );
+      return { ...state, socialNetworks: deleteSocial };
+    }
+
     default:
       throw new Error("Error cause unknown action type! " + type);
       break;

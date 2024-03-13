@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import SocialsData from "../../../data/socialNetwork.json";
 import BaseInput from "utils/Forms/BaseInput";
 import { useInputHelper, useMultipleInputHelper } from "helpers/FormHandler";
+import { useDispatchData } from "contextApi/DataContext";
 
 type Props = {};
 
 const SoicialNetwork = (props: Props) => {
   const [socialContainer, setSocialContainer] = useState<any[] | any>([]);
   const handleAddTitle = useInputHelper();
-  const handleMultipleInput = useMultipleInputHelper();
+  const formDispatch = useDispatchData();
 
   const handleSocialContainerAdd =
     (social: (typeof socialContainer)[0]) => () => {
@@ -19,7 +20,31 @@ const SoicialNetwork = (props: Props) => {
       });
     };
 
-  console.log(socialContainer);
+  const handleSocialInputAdd =
+    (socialName: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      formDispatch({
+        type: "ADD_SOCIAL",
+        payload: {
+          socialName,
+          name,
+          value,
+        },
+      });
+    };
+
+  const handleSocialDelete = (name: string) => () => {
+    setSocialContainer(
+      socialContainer.filter((social: any) => social.name !== name)
+    );
+
+    formDispatch({
+      type: "DELETE_SOCIAL",
+      payload: {
+        socialName: name,
+      },
+    });
+  };
 
   return (
     <div className="my-4 max-h-[540px] overflow-y-auto">
@@ -30,7 +55,7 @@ const SoicialNetwork = (props: Props) => {
         style="mt-4 mb-6"
         handleChange={handleAddTitle}
       />
-
+      {/*Social list */}
       {socialContainer.map((social: any, index: any) => (
         <div className="space-y-6 socialUrls" key={social.name}>
           <div className="flex items-center gap-x-5">
@@ -38,7 +63,7 @@ const SoicialNetwork = (props: Props) => {
             <p className="text-[16px]">{social.name}</p>
             <button
               className="ml-auto text-gray-600"
-              onClick={() => console.log(12)}
+              onClick={handleSocialDelete(social.name)}
             >
               X
             </button>
@@ -47,16 +72,16 @@ const SoicialNetwork = (props: Props) => {
           <BaseInput
             name="url"
             placeHolder="Url"
-            handleChange={handleMultipleInput("socialNetworks", index)}
+            handleChange={handleSocialInputAdd(social.name)}
           />
           <BaseInput
             name="text"
             placeHolder="Text"
-            handleChange={handleMultipleInput("socialNetworks", index)}
+            handleChange={handleSocialInputAdd(social.name)}
           />
         </div>
       ))}
-
+      {/* Add button   */}
       <div className="p-3 space-y-3 bg-gray-100 rounded-md shadow">
         <h4>Add</h4>
         <div className="flex gap-x-4">
