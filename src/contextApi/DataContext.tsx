@@ -52,9 +52,9 @@ const DataReducer = (state: any, action: any) => {
 
     case "DELETE_MULTIPLE": {
       const { category, index } = action.payload;
-
       let deleteByCategory = (state[category] || []).filter(
-        (item: any) => item.id !== index
+        (item: any, idx: any) =>
+          category === "coverImages" ? index !== idx : item.id !== index
       );
 
       return { ...state, [category]: deleteByCategory };
@@ -136,7 +136,7 @@ const DataReducer = (state: any, action: any) => {
     case "ADD_MULTIPLE_FILE": {
       const { category, value } = action.payload;
       let coverImages = state[category] || [];
-      let addImages = [...coverImages, { value }];
+      let addImages = [...coverImages, { image: value }];
       return { ...state, [category]: addImages };
     }
 
