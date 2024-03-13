@@ -3,6 +3,7 @@ import Companies from "./Companies";
 import Collapse from "utils/Ui/Collapse";
 import Summary from "./Summary";
 import CoverImages from "./CoverImages";
+import SoicialNetwork from "./SoicialNetwork";
 
 type Props = {};
 
@@ -20,6 +21,11 @@ const collapseComponents = [
   {
     title: "Images",
     component: <CoverImages />,
+  },
+
+  {
+    title: "Social networks",
+    component: <SoicialNetwork />,
   },
 ];
 
