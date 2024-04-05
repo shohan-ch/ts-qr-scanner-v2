@@ -3,6 +3,7 @@ import ErrorIndex from "../components/Error/Index";
 import Home from "../pages/Home";
 import Vcard from "../pages/Vcard";
 import Article from "../pages/Article";
+import LoginPage from "pages/Login";
 
 const routes: object[] = [
   {
@@ -18,6 +19,10 @@ const routes: object[] = [
   {
     path: "/article",
     element: <Article />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
   },
 ];
 
