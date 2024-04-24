@@ -2,15 +2,18 @@ import Validate from "helpers/Validate";
 import { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import BaseInput from "utils/Forms/BaseInput";
+import AlertBar from "utils/Ui/AlertBar";
 
 type Props = {};
 
 const Register = (props: Props) => {
   const [formData, setFormData] = useState({});
   const [errMessage, setErrMessage] = useState<any>({});
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     const validationMsg = Validate(
       { name, value },
       {
@@ -22,29 +25,45 @@ const Register = (props: Props) => {
     );
     setErrMessage({ ...errMessage, [name]: validationMsg });
     setFormData({ ...formData, [name]: value });
-    // if (!validationMsg) {
-    //   setFormData({ ...formData, [name]: value });
-    // }
+  };
+
+  const chekValidation = () => {
+    // Following length is static input field count of a form
+    if (Object.keys(errMessage).length !== 4) {
+      setIsOpen(true);
+      return false;
+    }
+    for (let key in errMessage) {
+      if (errMessage[key]) {
+        return false;
+      }
+    }
+    localStorage.clear();
+    return true;
   };
 
   const handleSubmit = () => {
-    if (!Object.keys(errMessage).length) {
-      alert("field are required");
-      return;
+    if (chekValidation()) {
+      alert(123);
     }
-    for (let key in errMessage) {
-      if (errMessage[key] != "") {
-        return;
-      }
-    }
-
-    alert(123);
   };
 
-  // console.log(formData);
-  console.log(errMessage);
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  console.log("data", formData);
+  console.log(errMessage, "err");
+
   return (
     <>
+      <AlertBar
+        open={isOpen}
+        onClose={handleClose}
+        type="error"
+        message={"All input fields are required"}
+      />
+
       <div className="flex items-center h-screen wrapper">
         <div className="block space-y-5 p-4 bg-gray-100 w-[100vw] md:w-[60vw] xl:w-[28vw] mx-auto rounded-md shadow h-auto">
           <h2 className="">Register</h2>

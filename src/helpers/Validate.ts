@@ -60,9 +60,9 @@ const Validate = (field: any, rules: any) => {
         break;
     }
   });
-  if (password === confirmPassword) {
-    localStorage.clear();
-  }
+  // if (password === confirmPassword) {
+  //   localStorage.clear();
+  // }
   return errorMessage;
 };
 
