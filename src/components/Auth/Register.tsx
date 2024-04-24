@@ -1,4 +1,5 @@
 import Validate from "helpers/Validate";
+import ValidationBase from "helpers/ValidationBase";
 import { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import BaseInput from "utils/Forms/BaseInput";
@@ -43,7 +44,20 @@ const Register = (props: Props) => {
   };
 
   const handleSubmit = () => {
+    // let validation = ValidationBase(formData, {
+    //   name: "required|string|min:5|max:8",
+    //   email: "required|email",
+    //   password: "required|min:5",
+    //   confirm_password: "required|matchPassword",
+    // });
+    // setErrMessage(validation);
+    // if (validation === true) {
+    //   // Form submission here
+    //   alert(123);
+    // }
+
     if (chekValidation()) {
+      //  Form submission here
       alert(123);
     }
   };
