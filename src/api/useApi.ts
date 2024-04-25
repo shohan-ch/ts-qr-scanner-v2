@@ -1,5 +1,4 @@
 import axios from "axios";
-import { error } from "console";
 import { useState } from "react";
 
 const useApi = () => {
@@ -14,12 +13,13 @@ const useApi = () => {
       return { data: null, error: err.response };
     }
   }
-  async function postRequest(url: string, payload: any, config?: any) {
+  async function postRequest(url: string, payload: any, config = {}) {
     try {
-      let data = await axios.post(url, payload, config || {});
-      return { data, error: null };
+      let response = await axios.post(url, payload, config);
+      return { data: response.data.data, error: null };
     } catch (err: any) {
-      return { data: null, error: err.response };
+      let errResponse = err.response.data;
+      return { data: null, error: errResponse };
     }
   }
   async function patchRequest(url: string, payload: any, config?: any) {

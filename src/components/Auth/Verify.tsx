@@ -7,7 +7,7 @@ const Verify = (props: Props) => {
   return (
     <>
       <div className="flex items-center h-screen wrapper">
-        <div className="space-y-5 p-4 bg-gray-100 w-[100vw] md:w-[60vw] xl:w-[28vw] mx-auto rounded shadow max-h-[35vh]">
+        <div className="space-y-5 p-4 bg-gray-100 w-[100vw] md:w-[60vw] xl:w-[28vw] mx-auto rounded shadow h-auto">
           <h2 className="">Verify Code</h2>
           <BaseInput
             name="text"

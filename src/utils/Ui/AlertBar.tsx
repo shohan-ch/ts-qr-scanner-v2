@@ -88,7 +88,7 @@ const AlertBar = (props: Props) => {
     let timer: any;
     timer = setTimeout(() => {
       onClose && onClose();
-    }, autoHideDuration || 3000);
+    }, autoHideDuration || 5000);
     return () => {
       clearTimeout(timer);
     };
@@ -97,7 +97,7 @@ const AlertBar = (props: Props) => {
   return (
     <>
       {open && (
-        <div className="transition-all shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] duration-300 rounded-lg  z-50 flex justify-between bg-white  absolute right-0 p-5 min-w-[18vw] h-auto">
+        <div className="gap-x-7 transition-all shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] duration-300 rounded-lg  z-50 flex justify-between bg-white  absolute right-0 p-5 w-auto h-auto">
           <span className="inline-block">
             {(type == "error" && icons["error"]) || icons["success"]}
           </span>

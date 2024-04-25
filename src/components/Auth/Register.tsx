@@ -1,17 +1,19 @@
+import useApi from "api/useApi";
 import Validate from "helpers/Validate";
 import ValidationBase from "helpers/ValidationBase";
-import useApi from "api/useApi";
-import { FC, useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import BaseInput from "utils/Forms/BaseInput";
 import AlertBar from "utils/Ui/AlertBar";
 
 type Props = {};
 
 const Register = (props: Props) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [errMessage, setErrMessage] = useState<any>({});
   const [isOpen, setIsOpen] = useState(false);
+  const [allertMessage, setAllertMessage] = useState("");
   const api = useApi();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,15 +61,35 @@ const Register = (props: Props) => {
     }
   };
 
+  const showMessage = (data: any, err: any) => {
+    if (err) {
+      const { data: errorResponse } = err;
+      setAllertMessage(
+        (Array.isArray(errorResponse) && errorResponse[0]) || errorResponse
+      );
+    } else {
+      setAllertMessage(data);
+    }
+    setIsOpen(true);
+  };
+
   const handleSubmit = async () => {
     if (validationOfBase()) {
-      // try {
-      //   const userData = await api.getRequest("https://dummyjson.com/users123");
-      //   console.log(userData);
-      // } catch (error: any) {
-      //   console.log(error.response);
-      // }
-      alert(123);
+      const { data, error } = await api.postRequest("/auth/registar", formData);
+      // showMessage(data, error);
+      if (error) {
+        const { data: errorResponse } = error;
+        setAllertMessage(
+          (Array.isArray(errorResponse) && errorResponse[0]) || errorResponse
+        );
+        setIsOpen(true);
+      } else {
+        setAllertMessage(data);
+        setIsOpen(true);
+        setTimeout(() => {
+          navigate("/verify");
+        }, 2000);
+      }
     }
 
     // if (chekValidation()) {
@@ -80,16 +102,13 @@ const Register = (props: Props) => {
     setIsOpen(false);
   };
 
-  // console.log("data", formData);
-  // console.log(errMessage, "err");
-
   return (
     <>
       <AlertBar
         open={isOpen}
         onClose={handleClose}
         type="error"
-        message={"All input fields are required"}
+        message={allertMessage || "All fields are required"}
       />
 
       <div className="flex items-center h-screen wrapper">
