@@ -1,5 +1,6 @@
 import Validate from "helpers/Validate";
 import ValidationBase from "helpers/ValidationBase";
+import useApi from "api/useApi";
 import { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import BaseInput from "utils/Forms/BaseInput";
@@ -11,6 +12,7 @@ const Register = (props: Props) => {
   const [formData, setFormData] = useState({});
   const [errMessage, setErrMessage] = useState<any>({});
   const [isOpen, setIsOpen] = useState(false);
+  const api = useApi();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -18,7 +20,7 @@ const Register = (props: Props) => {
     const validationMsg = Validate(
       { name, value },
       {
-        name: "required|string|min:5|max:8",
+        name: "required|string|min:5|max:15",
         email: "required|email",
         password: "required|min:5",
         confirm_password: "required|matchPassword",
@@ -45,7 +47,7 @@ const Register = (props: Props) => {
 
   const validationOfBase = () => {
     let isValidate = ValidationBase(formData, {
-      name: "required|string|min:5|max:8",
+      name: "required|string|min:5|max:15",
       email: "required|email",
       password: "required|min:5",
       confirm_password: "required|matchPassword",
@@ -57,8 +59,14 @@ const Register = (props: Props) => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (validationOfBase()) {
+      // try {
+      //   const userData = await api.getRequest("https://dummyjson.com/users123");
+      //   console.log(userData);
+      // } catch (error: any) {
+      //   console.log(error.response);
+      // }
       alert(123);
     }
 
@@ -72,8 +80,8 @@ const Register = (props: Props) => {
     setIsOpen(false);
   };
 
-  console.log("data", formData);
-  console.log(errMessage, "err");
+  // console.log("data", formData);
+  // console.log(errMessage, "err");
 
   return (
     <>
