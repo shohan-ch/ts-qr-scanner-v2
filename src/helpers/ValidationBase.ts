@@ -26,7 +26,7 @@ const ValidationBase = (data: any, rules: any) => {
         break;
       case data.hasOwnProperty(ruleProp):
         rules[ruleProp].split("|").forEach((rule: any) => {
-          let inputValue = data[ruleProp].trim();
+          let inputValue = data[ruleProp];
 
           //   ruleProp = ruleProp.charAt(0).toUpperCase() + ruleProp.slice(1);
           switch (true) {

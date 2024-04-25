@@ -10,7 +10,7 @@ type Props = {};
 
 const Register = (props: Props) => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState<any>({});
   const [errMessage, setErrMessage] = useState<any>({});
   const [isOpen, setIsOpen] = useState(false);
   const [allertMessage, setAllertMessage] = useState("");
@@ -87,7 +87,7 @@ const Register = (props: Props) => {
         setAllertMessage(data);
         setIsOpen(true);
         setTimeout(() => {
-          navigate("/verify");
+          navigate(`/verify?email=${formData.email}`);
         }, 2000);
       }
     }
