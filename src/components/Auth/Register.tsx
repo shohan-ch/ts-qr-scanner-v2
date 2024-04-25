@@ -28,38 +28,44 @@ const Register = (props: Props) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const chekValidation = () => {
-    // Following length is static input field count of a form
-    if (Object.keys(errMessage).length !== 4) {
-      setIsOpen(true);
-      return false;
+  // const chekValidation = () => {
+  //   // Following length is static input field count of a form
+  //   if (Object.keys(errMessage).length !== 4) {
+  //     setIsOpen(true);
+  //     return false;
+  //   }
+  //   for (let key in errMessage) {
+  //     if (errMessage[key]) {
+  //       return false;
+  //     }
+  //   }
+  //   localStorage.clear();
+  //   return true;
+  // };
+
+  const validationOfBase = () => {
+    let isValidate = ValidationBase(formData, {
+      name: "required|string|min:5|max:8",
+      email: "required|email",
+      password: "required|min:5",
+      confirm_password: "required|matchPassword",
+    });
+    setErrMessage(isValidate);
+    if (isValidate === true) {
+      localStorage.clear();
+      return true;
     }
-    for (let key in errMessage) {
-      if (errMessage[key]) {
-        return false;
-      }
-    }
-    localStorage.clear();
-    return true;
   };
 
   const handleSubmit = () => {
-    // let validation = ValidationBase(formData, {
-    //   name: "required|string|min:5|max:8",
-    //   email: "required|email",
-    //   password: "required|min:5",
-    //   confirm_password: "required|matchPassword",
-    // });
-    // setErrMessage(validation);
-    // if (validation === true) {
-    //   // Form submission here
-    //   alert(123);
-    // }
-
-    if (chekValidation()) {
-      //  Form submission here
+    if (validationOfBase()) {
       alert(123);
     }
+
+    // if (chekValidation()) {
+    //   //  Form submission here
+    //   alert(123);
+    // }
   };
 
   const handleClose = () => {
