@@ -18,18 +18,19 @@ const Register = (props: Props) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
-    const validationMsg = Validate(
-      { name, value },
-      {
-        name: "required|string|min:5|max:15",
-        email: "required|email",
-        password: "required|min:5",
-        confirm_password: "required|matchPassword",
-      }
-    );
-    setErrMessage({ ...errMessage, [name]: validationMsg });
+    validationOfSingleField({ name, value });
     setFormData({ ...formData, [name]: value });
+  };
+
+  const validationOfSingleField = (formData: any) => {
+    //  Following have to add rules for input
+    const validationMsg = Validate(formData, {
+      name: "required|string|min:5|max:15",
+      email: "required|email",
+      password: "required|min:5",
+      confirm_password: "required|matchPassword",
+    });
+    setErrMessage({ ...errMessage, [formData.name]: validationMsg });
   };
 
   // const chekValidation = () => {

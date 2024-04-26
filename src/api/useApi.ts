@@ -16,7 +16,7 @@ const useApi = () => {
   async function postRequest(url: string, payload: any, config = {}) {
     try {
       let response = await axios.post(url, payload, config);
-      return { data: response.data.data, error: null };
+      return { data: response.data, error: null };
     } catch (err: any) {
       let errResponse = err.response.data;
       return { data: null, error: errResponse };

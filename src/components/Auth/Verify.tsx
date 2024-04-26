@@ -20,10 +20,6 @@ const Verify = (props: Props) => {
     setIsOpen(false);
   };
 
-  useEffect(() => {
-    console.log(email);
-  }, []);
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: Number(value) });
