@@ -13,17 +13,18 @@ type Props = {
   formData: object;
   apiEndPoint: object | string;
   validationRule: object;
+  navigateRoute?: string;
 };
 const FormModule = (props: Props, ref: any) => {
-  const { formData, apiEndPoint, validationRule } = props;
+  const { formData, apiEndPoint, validationRule, navigateRoute } = props;
   const api = useApi();
   const [errMessage, setErrMessage] = useState<any>({});
   const [isOpen, setIsOpen] = useState(false);
   const [allertMessage, setAllertMessage] = useState("");
   const [allertType, setAllertType] = useState("error");
+  const navigate = useNavigate();
   //   const [searchParams] = useSearchParams();
   //   const email = searchParams.get("email");
-  //   const navigate = useNavigate();
 
   const handleClose = () => {
     setIsOpen(false);
@@ -69,9 +70,11 @@ const FormModule = (props: Props, ref: any) => {
         } else {
           return { data: data };
         }
-        // setTimeout(() => {
-        //   navigate("/login");
-        // }, 2000);
+        if (navigateRoute) {
+          setTimeout(() => {
+            navigate(`${navigateRoute}`);
+          }, 2000);
+        }
       }
     } else {
       return isValidationSuccess;
