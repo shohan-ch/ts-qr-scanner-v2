@@ -1,69 +1,39 @@
-import useApi from "api/useApi";
-import ValidationBase from "helpers/ValidationBase";
-import React, { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import React, { createRef, useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import BaseInput from "utils/Forms/BaseInput";
-import AlertBar from "utils/Ui/AlertBar";
-
+import FormModule from "utils/Forms/FormModule";
 type Props = {};
 
 const Verify = (props: Props) => {
-  const api = useApi();
   const [searchParams] = useSearchParams();
   const email = searchParams.get("email");
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({});
-  const [errMessage, setErrMessage] = useState<any>({});
-  const [isOpen, setIsOpen] = useState(false);
-  const [allertMessage, setAllertMessage] = useState("");
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
+  const [formData, setFormData] = React.useState({});
+  const [errMessage, setErrMessage] = React.useState<any>({});
+  const submitRef: any = createRef();
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: Number(value) });
   };
-
-  const validationOfBase = () => {
-    let isValidate = ValidationBase(formData, {
-      verify_code: "required|number",
-    });
-    setErrMessage(isValidate);
-    if (isValidate === true) {
-      return true;
-    }
-  };
-
   const handleSubmit = async () => {
-    if (validationOfBase()) {
-      const { data, error } = await api.postRequest(
-        `/auth/verify-email?email=${email}`,
-        formData
-      );
-      if (error) {
-        const { data: errorResponse } = error;
-        setAllertMessage(
-          (Array.isArray(errorResponse) && errorResponse[0]) || errorResponse
-        );
-        setIsOpen(true);
+    let response = await submitRef.current.handleSubmit();
+    if (response) {
+      const { data } = response;
+      if (data) {
+        setErrMessage({});
+        console.log(data, "from login");
       } else {
-        setAllertMessage(data);
-        setIsOpen(true);
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
+        setErrMessage(response);
       }
     }
   };
-
   return (
     <>
-      <AlertBar
-        open={isOpen}
-        onClose={handleClose}
-        type="error"
-        message={allertMessage || "All fields are required"}
+      <FormModule
+        ref={submitRef}
+        apiEndPoint={`/auth/verify-email?email=${email}`}
+        formData={formData}
+        validationRule={{ verify_code: "required|number" }}
+        redirectRoute="/login"
       />
       <div className="flex items-center h-screen wrapper">
         <div className="space-y-5 p-4 bg-gray-100 w-[100vw] md:w-[60vw] xl:w-[28vw] mx-auto rounded shadow h-auto">

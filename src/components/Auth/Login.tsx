@@ -1,12 +1,12 @@
-import Validate from "helpers/Validate";
 import React, { createRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BaseInput from "utils/Forms/BaseInput";
 import FormModule from "utils/Forms/FormModule";
 
 type Props = {};
 
 const Login = (props: Props) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = React.useState({});
   const [errMessage, setErrMessage] = React.useState<any>({});
   const submitRef: any = createRef();
@@ -21,6 +21,7 @@ const Login = (props: Props) => {
       if (data) {
         setErrMessage({});
         console.log(data, "from login");
+        return navigate("/vcard");
       } else {
         setErrMessage(response);
       }

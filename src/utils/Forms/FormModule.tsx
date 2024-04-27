@@ -13,10 +13,10 @@ type Props = {
   formData: object;
   apiEndPoint: object | string;
   validationRule: object;
-  navigateRoute?: string;
+  redirectRoute?: string;
 };
 const FormModule = (props: Props, ref: any) => {
-  const { formData, apiEndPoint, validationRule, navigateRoute } = props;
+  const { formData, apiEndPoint, validationRule, redirectRoute } = props;
   const api = useApi();
   const [errMessage, setErrMessage] = useState<any>({});
   const [isOpen, setIsOpen] = useState(false);
@@ -70,10 +70,10 @@ const FormModule = (props: Props, ref: any) => {
         } else {
           return { data: data };
         }
-        if (navigateRoute) {
+        if (redirectRoute) {
           setTimeout(() => {
-            navigate(`${navigateRoute}`);
-          }, 2000);
+            navigate(`${redirectRoute}`);
+          }, 3000);
         }
       }
     } else {

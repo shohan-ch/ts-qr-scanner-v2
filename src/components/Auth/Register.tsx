@@ -85,7 +85,7 @@ const Register = (props: Props) => {
         );
         setIsOpen(true);
       } else {
-        setAllertMessage(data);
+        setAllertMessage(data.data);
         setIsOpen(true);
         setTimeout(() => {
           navigate(`/verify?email=${formData.email}`);
