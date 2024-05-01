@@ -4,7 +4,7 @@ import DataContextProvider from "./contextApi/DataContext";
 
 function App() {
   return (
-    <div className="relative px-8 py-4">
+    <div className="relative">
       <DataContextProvider>
         <RouterProvider router={routes} />
       </DataContextProvider>

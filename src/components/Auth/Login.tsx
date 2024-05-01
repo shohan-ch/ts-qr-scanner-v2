@@ -24,6 +24,7 @@ const Login = (props: Props) => {
         console.log(data, "from login");
         authStorage.set(data.accessToken);
         navigate("/vcard");
+        // redirect("/vcard");
       } else {
         setErrMessage(response);
       }

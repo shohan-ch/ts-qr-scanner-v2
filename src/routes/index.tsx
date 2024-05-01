@@ -6,16 +6,28 @@ import VerifyPage from "pages/Verify";
 import { createBrowserRouter } from "react-router-dom";
 import AuthRoute from "../components/AuthRoute";
 import ErrorIndex from "../components/Error/Index";
+import MainLayout from "../components/Layout/MainLayout";
 import Article from "../pages/Article";
 import Home from "../pages/Home";
 import Vcard from "../pages/Vcard";
 
 const routes: object[] = [
   {
-    path: "/",
-    element: <Home />,
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+        errorElement: <ErrorIndex />,
+      },
+    ],
     errorElement: <ErrorIndex />,
   },
+  // {
+  //   path: "/",
+  //   element: <Home />,
+  //   errorElement: <ErrorIndex />,
+  // },
 
   {
     path: "/login",
@@ -38,19 +50,43 @@ const routes: object[] = [
     element: <ResetPasswordPage />,
   },
 
-  // Following is private route
+  // Following is authentic route
+
+  /* 
+
+    {
+      path: "/",
+      element: <AuthRoute />, // protected route
+      children: [
+        {
+          path: "/vcard",
+          element: <Vcard />,
+        },
+        {
+          path: "/article",
+          element: <Article />,
+        },
+      ],
+    },
+
+*/
+  // Following also  authentic route & use layout
 
   {
-    path: "/",
-    element: <AuthRoute />, // protected route
+    element: <MainLayout />,
     children: [
       {
-        path: "/vcard",
-        element: <Vcard />,
-      },
-      {
-        path: "/article",
-        element: <Article />,
+        element: <AuthRoute />, // protected route
+        children: [
+          {
+            path: "/vcard",
+            element: <Vcard />,
+          },
+          {
+            path: "/article",
+            element: <Article />,
+          },
+        ],
       },
     ],
   },

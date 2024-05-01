@@ -8,6 +8,9 @@ const authStorage = {
     let token = localStorage.getItem("token");
     return token || null;
   },
+  clear: () => {
+    localStorage.removeItem("token");
+  },
 };
 
 export default authStorage;
