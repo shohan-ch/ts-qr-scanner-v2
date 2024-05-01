@@ -81,7 +81,13 @@ const Login = (props: Props) => {
               >
                 Register
               </Link>{" "}
-              here
+              here Or{" "}
+              <Link
+                to={"/forget-password"}
+                style={{ color: "blue", fontWeight: "bold" }}
+              >
+                Forget password
+              </Link>{" "}
             </p>
           </div>
         </div>

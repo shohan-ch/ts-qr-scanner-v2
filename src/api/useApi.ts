@@ -1,9 +1,13 @@
 import axios from "axios";
+import authStorage from "helpers/AuthStorage";
 import { useState } from "react";
 
 const useApi = () => {
-  const BASE_API = "http://localhost:3000/api/v1";
-  axios.defaults.baseURL = BASE_API;
+  const BACKEND_API = "http://localhost:3000/api/v1";
+  axios.defaults.baseURL = BACKEND_API;
+  axios.defaults.withCredentials = true; // with credentials true is need when cookie set needed
+  axios.defaults.headers.Authorization =
+    (authStorage.get() && "Bearer " + authStorage.get()) || null;
 
   async function getRequest(url: string) {
     try {
