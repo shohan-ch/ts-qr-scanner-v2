@@ -1,5 +1,6 @@
+import authStorage from "helpers/AuthStorage";
 import React, { createRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import BaseInput from "utils/Forms/BaseInput";
 import FormModule from "utils/Forms/FormModule";
 
@@ -21,7 +22,8 @@ const Login = (props: Props) => {
       if (data) {
         setErrMessage({});
         console.log(data, "from login");
-        return navigate("/vcard");
+        authStorage.set(data.accessToken);
+        navigate("/vcard");
       } else {
         setErrMessage(response);
       }

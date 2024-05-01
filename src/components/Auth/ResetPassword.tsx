@@ -12,10 +12,12 @@ const ResetPassword = (props: Props) => {
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token");
   const email = searchParams.get("email");
+
   const api = useApi();
 
   const [formData, setFormData] = React.useState({});
   const [errMessage, setErrMessage] = React.useState<any>({});
+  const [tokenErr, setTokenErr] = React.useState("");
   const submitRef: any = createRef();
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -32,9 +34,9 @@ const ResetPassword = (props: Props) => {
       {}
     );
     if (error) {
-      console.log(error.data);
+      setTokenErr(error.data);
     } else {
-      console.log(data, "data effect");
+      setTokenErr("");
     }
   };
 
@@ -92,8 +94,10 @@ const ResetPassword = (props: Props) => {
           {errMessage.confirmPassword && (
             <p className="!mt-0 text-red-500 ">{errMessage.confirmPassword}</p>
           )}
+
+          {tokenErr && <p className="!mt-0 text-red-500 ">{tokenErr}</p>}
           <button
-            disabled={true}
+            disabled={!!tokenErr}
             onClick={handleSubmit}
             className="p-2 px-4 text-white bg-blue-600 rounded"
           >
