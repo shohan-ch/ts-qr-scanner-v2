@@ -9,16 +9,27 @@ import React, {
 import { useNavigate, useSearchParams } from "react-router-dom";
 import AlertBar from "utils/Ui/AlertBar";
 
+type ApiMethod =
+  | "getRequest"
+  | "postRequest"
+  | "postFormRequest"
+  | "patchRequest"
+  | "deleteRequest";
+
+type ApiType = {
+  method: ApiMethod;
+  url: string;
+};
+
 type Props = {
   formData: object;
-  apiEndPoint: object | string;
+  apiEndPoint: string | ApiType;
   validationRule: object;
   redirectRoute?: string;
 };
 const FormModule = (props: Props, ref: any) => {
   const { formData, apiEndPoint, validationRule, redirectRoute } = props;
   const api = useApi();
-  const [errMessage, setErrMessage] = useState<any>({});
   const [isOpen, setIsOpen] = useState(false);
   const [allertMessage, setAllertMessage] = useState("");
   const [allertType, setAllertType] = useState("error");
@@ -38,23 +49,42 @@ const FormModule = (props: Props, ref: any) => {
 
   const validationOfBase = () => {
     let isValidate = ValidationBase(formData, validationRule);
-    setErrMessage(isValidate);
     if (isValidate === true) {
       return true;
     } else {
       return isValidate;
-      //   return errMessage;
     }
+  };
+
+  const apiOptions = () => {
+    let method: ApiMethod;
+    let url: string;
+
+    if (typeof apiEndPoint === "string") {
+      method = "getRequest"; // Default method if endpoint is a string
+      url = apiEndPoint;
+    } else {
+      method = apiEndPoint.method; // Asserting the type
+      url = apiEndPoint.url;
+    }
+
+    return {
+      method,
+      url,
+    };
   };
 
   const handleSubmit = async () => {
     let isValidationSuccess = validationOfBase();
     if (isValidationSuccess === true) {
       // Api call
-      const { data: responseData, error } = await api.postRequest(
-        `${apiEndPoint}`,
-        formData
+
+      const { url, method } = apiOptions();
+      const { data: responseData, error } = await api[method](
+        url,
+        formData || {}
       );
+
       if (error) {
         const { data: errorResponse } = error;
         setAllertMessage(
@@ -78,7 +108,6 @@ const FormModule = (props: Props, ref: any) => {
       }
     } else {
       return isValidationSuccess;
-      //   return errMessage;
     }
   };
 

@@ -26,6 +26,15 @@ const useApi = () => {
       return { data: null, error: errResponse };
     }
   }
+  async function postFormRequest(url: string, payload: any, config = {}) {
+    try {
+      let response = await axios.postForm(url, payload, config);
+      return { data: response.data, error: null };
+    } catch (err: any) {
+      let errResponse = err.response.data;
+      return { data: null, error: errResponse };
+    }
+  }
   async function patchRequest(url: string, payload: any, config?: any) {
     try {
       let data = await axios.patch(url, payload, config || {});
@@ -59,7 +68,13 @@ const useApi = () => {
   //   return (await axios.delete(url)).data;
   // }
 
-  return { getRequest, postRequest, patchRequest, deleteRequest };
+  return {
+    getRequest,
+    postRequest,
+    postFormRequest,
+    patchRequest,
+    deleteRequest,
+  };
 };
 
 export default useApi;
