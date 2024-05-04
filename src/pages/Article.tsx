@@ -1,12 +1,8 @@
-import useApi from "api/useApi";
-import authStorage from "helpers/AuthStorage";
 import React, { createRef } from "react";
-import { Link, redirect, useNavigate } from "react-router-dom";
 import BaseInput from "utils/Forms/BaseInput";
 import FormModule from "utils/Forms/FormModule";
 
 const Article = () => {
-  const api = useApi();
   const [formData, setFormData] = React.useState<any>({});
   const [errMessage, setErrMessage] = React.useState<any>({});
   const submitRef: any = createRef();
@@ -22,11 +18,12 @@ const Article = () => {
 
   const handleSubmit = async () => {
     let response = await submitRef.current.handleSubmit();
-    if (response) {
+    if (response === undefined) {
+      setFormData({ title: "", text: "" });
+    } else {
       const { data } = response;
       if (data) {
         setErrMessage({});
-        console.log(data);
       } else {
         setErrMessage(response);
       }
@@ -38,8 +35,7 @@ const Article = () => {
       <div>
         <FormModule
           ref={submitRef}
-          apiEndPoint={{ method: "postRequest", url: "/posts" }}
-          // apiEndPoint={"/posts"}
+          apiEndPoint={{ method: "postFormRequest", url: "/posts" }}
           formData={formData}
           validationRule={{
             title: "required",

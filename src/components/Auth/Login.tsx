@@ -35,7 +35,8 @@ const Login = (props: Props) => {
     <>
       <FormModule
         ref={submitRef}
-        apiEndPoint={"/auth/login"}
+        apiEndPoint={{ method: "postRequest", url: "/auth/login" }}
+        // apiEndPoint={"/auth/login"}
         formData={formData}
         validationRule={{ email: "required", password: "required" }}
       />

@@ -22,7 +22,7 @@ type ApiType = {
 };
 
 type Props = {
-  formData: object;
+  formData?: object;
   apiEndPoint: string | ApiType;
   validationRule: object;
   redirectRoute?: string;
@@ -92,6 +92,7 @@ const FormModule = (props: Props, ref: any) => {
         );
         setIsOpen(true);
       } else {
+        console.log(responseData);
         const { data } = responseData;
         if (typeof data === "string") {
           setAllertType("success");
