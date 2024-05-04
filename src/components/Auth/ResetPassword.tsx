@@ -59,7 +59,10 @@ const ResetPassword = (props: Props) => {
     <>
       <FormModule
         ref={submitRef}
-        apiEndPoint={`/auth/reset-password?token=${token}`}
+        apiEndPoint={{
+          url: `/auth/reset-password?token=${token}`,
+          method: "postRequest",
+        }}
         formData={formData}
         validationRule={{
           password: "required",

@@ -32,7 +32,7 @@ const ForgetPassword = (props: Props) => {
     <>
       <FormModule
         ref={submitRef}
-        apiEndPoint={"/auth/forget-password"}
+        apiEndPoint={{ url: "/auth/forget-password", method: "postRequest" }}
         formData={formData}
         validationRule={{ email: "required|email" }}
       />

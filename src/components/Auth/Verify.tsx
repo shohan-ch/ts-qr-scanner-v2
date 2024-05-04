@@ -30,7 +30,10 @@ const Verify = (props: Props) => {
     <>
       <FormModule
         ref={submitRef}
-        apiEndPoint={`/auth/verify-email?email=${email}`}
+        apiEndPoint={{
+          url: `/auth/verify-email?email=${email}`,
+          method: "postRequest",
+        }}
         formData={formData}
         validationRule={{ verify_code: "required|number" }}
         redirectRoute="/login"
